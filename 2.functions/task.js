@@ -1,11 +1,9 @@
 // Задание 1
 function getArrayParams(arr) {
   let min, max, sum = 0, avg;
-  min = Math.min(...arr); // на мой взгляд такое решение выглядит проще и лаконичнее, нежели предложенное в задании
+  min = Math.min(...arr);
   max = Math.max(...arr);
-  sum = arr.reduce((total, current) => {
-    return total + current;
-  }, 0);
+  sum = arr.reduce((total, current) => total + current);
   avg = +(sum / arr.length).toFixed(2);
   
   return { min: min, max: max, avg: avg };
@@ -13,16 +11,12 @@ function getArrayParams(arr) {
 
 // Задание 2
 function worker(arr) {
-  return arr.reduce((total, current) => {
-    return total + current;
-  });
+  return arr.reduce((total, current) => total + current);
 }
 
 function makeWork(arrOfArr, func) {
   let max = 0;
-  arrOfArr.forEach(element => {
-    max = func(element) > max ? func(element) : max;
-  });
+  arrOfArr.forEach(element => max = func(element) > max ? func(element) : max);
   return max;
 }
 

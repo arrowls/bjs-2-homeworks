@@ -82,3 +82,40 @@ class Library {
         return bookToGive;
     }
 }
+
+class Student {
+    constructor (name, gender, age) {
+        this.name = name;
+        this.gender = gender;
+        this.age = age;
+    }
+    set setSubject (newSubject) {
+        this.subject = newSubject;
+    }
+    addMark (newMark, subject) {
+        if (this.marks == undefined) {
+            this.marks = [];
+          }
+          this.marks.push({[subject]: newMark}); // создает в массиве оценок объект предмет : оценка
+    }
+    getAverage () {
+        return this.marks.reduce((previous, current) => previous + Object.values(current)[0], 0) / this.marks.length; //получаем оценку из массива объектов
+    }
+    getAverageBySubject (subjectName) {
+        let mark = null;
+        let count = 0;
+        this.marks.forEach((element) => {
+            if (Object.keys(element)[0] == subjectName) {
+                mark += Object.values(element)[0];
+                count++;
+            }
+        })
+        return mark / count;
+    }
+    exclude (reason) {
+        delete this.subject;
+        delete this.marks;
+
+        this.excluded = reason;
+    }
+}

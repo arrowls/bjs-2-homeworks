@@ -96,6 +96,9 @@ class Student {
         if (this.marks == undefined) {
             this.marks = [];
           }
+        if (newMark > 5 || newMark < 1) {
+            throw new Error('Ошибка, оценка должна быть числом от 1 до 5');
+        }
           this.marks.push({[subject]: newMark}); // создает в массиве оценок объект предмет : оценка
     }
     getAverage () {

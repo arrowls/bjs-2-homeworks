@@ -13,16 +13,14 @@ Student.prototype.addMark = function(mark) {
   }
   this.marks.push(mark);
 }
-Student.prototype.addMarks = function() {
+Student.prototype.addMarks = function(...rest) {
   if (this.marks == undefined) {
     this.marks = [];
   }
-  for (let key in arguments) {
-    this.marks.push(arguments[key]);
-  }
+    this.marks.push(...rest);
 }
 Student.prototype.getAverage = function() {
-  return this.marks.slice().reduce((previous, current) => previous + current, 0) / this.marks.length;
+  return this.marks.reduce((previous, current) => previous + current, 0) / this.marks.length;
 }
 Student.prototype.exclude = function(reason) {
   delete this.subject;

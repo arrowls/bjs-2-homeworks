@@ -98,26 +98,20 @@ class Student {
       console.error("Ошибка, оценка должна быть числом от 1 до 5");
       return;
     }
-    
+    if (this.marks[subject] == undefined) {
+      this.marks[subject] = [];
+    }
+    this.marks[subject].push(newMark);
   }
   getAverage() {
-    return (
-      this.marks.reduce(
-        (previous, current) => previous + Object.values(current)[0],
-        0
-      ) / this.marks.length
-    ); //получаем оценку из массива объектов
+    let total = 0;
+    for (let key in this.marks) {
+      total += this.marks[key].reduce((prev, curr) => prev + curr, 0) / this.marks[key].length;
+    }
+    return  total / Object.keys(this.marks).length;
   }
   getAverageBySubject(subjectName) {
-    let mark = null;
-    let count = 0;
-    this.marks.forEach((element) => {
-      if (Object.keys(element)[0] == subjectName) {
-        mark += Object.values(element)[0];
-        count++;
-      }
-    });
-    return mark / count;
+    return this.marks[subjectName].reduce((prev, curr) => prev + curr, 0) / this.marks[subjectName].length;
   }
   exclude(reason) {
     delete this.subject;
